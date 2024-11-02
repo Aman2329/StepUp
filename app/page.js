@@ -1,18 +1,14 @@
-import React from 'react'
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import Head from 'next/head';
 import Contect from './_components/Contect';
 import Link from 'next/link';
 import { FaGithub } from "react-icons/fa";
 
-const page = () => {
+const Page = () => {
   return (
-    // <div className='p-10 flex flex-col items-center justify-center' >
-    //   <h1 className='red font-bold text-[22px]'>Welcome to AI Mock Interview</h1>
-    // <a  ><h1><Button>Start</Button></h1></a>
-    // </div>
-
     <div>
+      {/* Head Section for metadata */}
       <Head>
         <title>AI Mock Interview</title>
         <meta name="description" content="Ace your next interview with AI-powered mock interviews" />
@@ -25,25 +21,27 @@ const page = () => {
           <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
             <h1 className="text-3xl font-bold text-primary">AI Mock Interview</h1>
             <nav className="flex flex-col sm:flex-row flex-wrap items-center justify-between mt-4 md:mt-0 space-y-4 sm:space-y-0 sm:space-x-4">
+              {/* Sponsor Button */}
               <div>
                 <iframe
                   src="https://github.com/sponsors/modamaan/button"
                   title="Sponsor modamaan on GitHub"
                   height="32"
                   width="114"
-                  className="border-0 rounded-lg">
-                </iframe>
+                  className="border-0 rounded-lg"
+                ></iframe>
               </div>
-
+              {/* GitHub Link */}
               <div>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://github.com/modamaan/Ai-mock-Interview">
+                  href="https://github.com/modamaan/Ai-mock-Interview"
+                >
                   <FaGithub className="w-10 h-8" />
                 </a>
               </div>
-
+              {/* Navigation Links */}
               <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0">
                 <a href="#features" className="text-lg text-gray-800 mx-2 md:mx-4">Features</a>
                 <a href="#testimonials" className="text-lg text-gray-800 mx-2 md:mx-4">Testimonials</a>
@@ -54,13 +52,13 @@ const page = () => {
         </header>
 
         {/* Hero Section */}
-        <section className="flex flex-col items-center justify-center text-center py-20 bg-gradient-to-r from-gray-900 to-gray-400  px-6 md:px-0">
+        <section className="flex flex-col items-center justify-center text-center py-20 bg-gradient-to-r from-gray-900 to-gray-400 px-6 md:px-0">
           <h2 className="text-4xl md:text-5xl font-bold text-white">Ace Your Next Interview</h2>
-          <p className="mt-4 text-lg md:text-xl text-white ">Practice with AI-powered mock interviews and get personalized feedback</p>
+          <p className="mt-4 text-lg md:text-xl text-white">Practice with AI-powered mock interviews and get personalized feedback</p>
           <div className="mt-6 flex flex-col md:flex-row">
             <a
               href="/dashboard"
-              className="px-6 py-3 mb-4 md:mb-0 md:mr-4 text-lg font-semibold bg-white !text-primary-600 rounded-lg shadow-lg hover:bg-gray-100"
+              className="px-6 py-3 mb-4 md:mb-0 md:mr-4 text-lg font-semibold bg-white text-primary-600 rounded-lg shadow-lg hover:bg-gray-100"
             >
               Get Started
             </a>
@@ -77,9 +75,7 @@ const page = () => {
         <section id="features" className="py-16 bg-white px-6 md:px-0">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-800">Features</h2>
-            <p className="mt-4 text-lg text-gray-800">
-              Our AI Mock Interview platform offers a range of powerful features:
-            </p>
+            <p className="mt-4 text-lg text-gray-800">Our AI Mock Interview platform offers a range of powerful features:</p>
             <div className="flex flex-wrap justify-center mt-8">
               <div className="w-full md:w-1/3 px-4 py-8">
                 <div className="bg-blue-100 rounded-lg p-6 shadow-md">
@@ -138,7 +134,7 @@ const page = () => {
         <p>© 2024 AI Mock Interview. All rights reserved.</p>
       </footer>
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;

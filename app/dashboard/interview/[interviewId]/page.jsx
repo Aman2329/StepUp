@@ -8,13 +8,11 @@ import { Button } from "@/components/ui/button";
 import Webcam from "react-webcam";
 import Link from "next/link";
 import { WebCamContext } from "../../layout";
-import { use } from "react";
 
 const Interview = ({ params }) => {
-  const unwrappedParams = use(params); // Unwrapping the params
+  const { interviewId } = params; // Directly extract interviewId from params
   const { webCamEnabled, setWebCamEnabled } = useContext(WebCamContext);
   const [interviewData, setInterviewData] = useState(null);
-  const [interviewId, setInterviewId] = useState(unwrappedParams.interviewId);
 
   useEffect(() => {
     if (interviewId) {

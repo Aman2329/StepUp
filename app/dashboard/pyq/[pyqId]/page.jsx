@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +10,8 @@ import { db } from "@/utils/db";
 import { Question } from "@/utils/schema";
 import { eq } from "drizzle-orm";
 
-const page = ({ params }) => {
+const page = props => {
+  const params = use(props.params);
   const [questionData, setQuestionData] = useState();
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-
 import {
   Dialog,
   DialogClose,
@@ -41,24 +40,30 @@ const AddNewInterview = () => {
       Job Positions: ${jobPosition}, 
       Job Description: ${jobDesc}, 
       Years of Experience: ${jobExperience}. 
-      Based on this information, please provide 5 interview questions with answers in JSON format, ensuring "Question" and "Answer" are fields in the JSON.
+      Based on this information, please provide 5 interview questions with answers in valid JSON format, ensuring "Question" and "Answer" are fields in the JSON.
     `;
 
     const result = await chatSession.sendMessage(InputPrompt);
-    const MockJsonResp = result.response
+    let MockJsonResp = result.response
       .text()
       .replace("```json", "")
       .replace("```", "")
       .trim();
-    console.log(JSON.parse(MockJsonResp));
-    setJsonResponse(MockJsonResp);
 
-    if (MockJsonResp) {
+    console.log("Raw Response:", MockJsonResp);
+
+    try {
+      // Attempt to parse the response as JSON
+      const parsedResponse = JSON.parse(MockJsonResp);
+      console.log(parsedResponse);
+      setJsonResponse(parsedResponse);
+
+      // Database insertion if parsing was successful
       const resp = await db
         .insert(MockInterview)
         .values({
           mockId: uuidv4(),
-          jsonMockResp: MockJsonResp,
+          jsonMockResp: JSON.stringify(parsedResponse), // store as JSON string
           jobPosition: jobPosition,
           jobDesc: jobDesc,
           jobExperience: jobExperience,
@@ -66,16 +71,18 @@ const AddNewInterview = () => {
           createdAt: moment().format("YYYY-MM-DD"),
         })
         .returning({ mockId: MockInterview.mockId });
-        
+
       console.log("Inserted ID:", resp);
 
       if (resp) {
         setOpenDialog(false);
         router.push("/dashboard/interview/" + resp[0]?.mockId);
       }
-    } else {
-      console.log("ERROR");
+    } catch (error) {
+      console.error("Failed to parse JSON:", error);
+      setJsonResponse([]); // or handle the error as needed
     }
+
     setLoading(false);
   };
 

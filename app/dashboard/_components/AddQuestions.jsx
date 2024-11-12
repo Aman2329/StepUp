@@ -36,19 +36,84 @@ const AddQuestions = () => {
     setState(e.target.value);
   };
 
-  const onSubmit = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-    console.log(
-      "Data",
-      jobPosition,
-      jobDesc,
-      typeQuestion,
-      company,
-      jobExperience
-    );
+//   const onSubmit = async (e) => {
+//     setLoading(true);
+//     e.preventDefault();
+//     console.log(
+//       "Data",
+//       jobPosition,
+//       jobDesc,
+//       typeQuestion,
+//       company,
+//       jobExperience
+//     );
 
-    const InputPrompt = `
+//     const InputPrompt = `
+//     Job Positions: ${jobPosition},
+//     Job Description: ${jobDesc},
+//     Years of Experience: ${jobExperience},
+//     Which type of question: ${typeQuestion},
+//     This company previous question: ${company},
+//     Based on this information, please provide 5 interview questions with answers in JSON format.
+//     Each question and answer should be fields in the JSON. Ensure "Question" and "Answer" are fields.
+// }  
+//   `;
+//     console.log("InputPrompt:", InputPrompt);
+
+//     try {
+//       const result = await chatSession.sendMessage(InputPrompt);
+//       const MockQuestionJsonResp = result.response
+//         .text()
+//         .replace("```json", "")
+//         .replace("```", "")
+//         .trim();
+//       // console.log("Parsed data", JSON.parse(MockQuestionJsonResp));
+      
+//       console.log("JSON RESPONSE", MockQuestionJsonResp);
+//       // console.log("Parsed RESPONSE", JSON.parse(MockQuestionJsonResp))
+
+//       if (MockQuestionJsonResp) {
+//         const resp = await db
+//           .insert(Question)
+//           .values({
+//             mockId: uuidv4(),
+//             MockQuestionJsonResp: MockQuestionJsonResp,
+//             jobPosition: jobPosition,
+//             jobDesc: jobDesc,
+//             jobExperience: jobExperience,
+//             typeQuestion: typeQuestion,
+//             company: company,
+//             createdBy: user?.primaryEmailAddress?.emailAddress,
+//             createdAt: moment().format("YYYY-MM-DD"),
+//           })
+//           .returning({ mockId: Question.mockId });
+
+//         console.log("Inserted ID:", resp);
+
+//         if (resp) {
+//           setOpenDialog(false);
+
+//           router.push("/dashboard/pyq/" + resp[0]?.mockId);
+//         }
+//       } else {
+//         console.log("ERROR");
+//       }
+//     } catch (error) {
+//       console.error("Failed to parse JSON:", error.message);
+//       alert("There was an error processing the data. Please try again.");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+
+// AddQuestions.jsx (revised `onSubmit` function)
+
+const onSubmit = async (e) => {
+  setLoading(true);
+  e.preventDefault();
+
+  const InputPrompt = `
     Job Positions: ${jobPosition},
     Job Description: ${jobDesc},
     Years of Experience: ${jobExperience},
@@ -56,55 +121,49 @@ const AddQuestions = () => {
     This company previous question: ${company},
     Based on this information, please provide 5 interview questions with answers in JSON format.
     Each question and answer should be fields in the JSON. Ensure "Question" and "Answer" are fields.
-}  
   `;
-    console.log("InputPrompt:", InputPrompt);
+  console.log("InputPrompt:", InputPrompt);
 
-    try {
-      const result = await chatSession.sendMessage(InputPrompt);
-      const MockQuestionJsonResp = result.response
-        .text()
-        .replace("```json", "")
-        .replace("```", "")
-        .trim();
-      // console.log("Parsed data", JSON.parse(MockQuestionJsonResp));
-      
-      console.log("JSON RESPONSE", MockQuestionJsonResp);
-      // console.log("Parsed RESPONSE", JSON.parse(MockQuestionJsonResp))
+  try {
+    const result = await chatSession.sendMessage(InputPrompt);
+    let MockQuestionJsonResp = result.response.text();
 
-      if (MockQuestionJsonResp) {
-        const resp = await db
-          .insert(Question)
-          .values({
-            mockId: uuidv4(),
-            MockQuestionJsonResp: MockQuestionJsonResp,
-            jobPosition: jobPosition,
-            jobDesc: jobDesc,
-            jobExperience: jobExperience,
-            typeQuestion: typeQuestion,
-            company: company,
-            createdBy: user?.primaryEmailAddress?.emailAddress,
-            createdAt: moment().format("YYYY-MM-DD"),
-          })
-          .returning({ mockId: Question.mockId });
+    // Clean unwanted markdown characters and symbols from JSON response
+    MockQuestionJsonResp = MockQuestionJsonResp
+      .replace(/```json|```/g, "") // Remove code fences
+      .replace(/\*\*/g, "")         // Remove markdown bold symbols
+      .replace(/\n/g, " ")           // Remove newlines for cleaner JSON
+      .trim();
 
-        console.log("Inserted ID:", resp);
+    console.log("Sanitized JSON Response:", MockQuestionJsonResp);
 
-        if (resp) {
-          setOpenDialog(false);
+    // Validate JSON before inserting into the database
+    JSON.parse(MockQuestionJsonResp); // This will throw an error if JSON is invalid
 
-          router.push("/dashboard/pyq/" + resp[0]?.mockId);
-        }
-      } else {
-        console.log("ERROR");
-      }
-    } catch (error) {
-      console.error("Failed to parse JSON:", error.message);
-      alert("There was an error processing the data. Please try again.");
-    } finally {
-      setLoading(false);
+    const resp = await db.insert(Question).values({
+      mockId: uuidv4(),
+      MockQuestionJsonResp: MockQuestionJsonResp,
+      jobPosition: jobPosition,
+      jobDesc: jobDesc,
+      jobExperience: jobExperience,
+      typeQuestion: typeQuestion,
+      company: company,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
+      createdAt: moment().format("YYYY-MM-DD"),
+    }).returning({ mockId: Question.mockId });
+
+    if (resp) {
+      setOpenDialog(false);
+      router.push("/dashboard/pyq/" + resp[0]?.mockId);
     }
-  };
+  } catch (error) {
+    console.error("Failed to parse or save JSON:", error.message);
+    alert("There was an error processing the data. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
   return (
     <div>
       <div

@@ -63,7 +63,7 @@ const Page = () => {
               Get Started
             </a>
             <a
-              href="#features"
+              href="dashboardCourse"
               className="px-6 py-3 text-lg font-semibold border border-white rounded-lg hover:bg-white hover:text-black-600"
             >
               Learn More

@@ -84,7 +84,7 @@ const Sidebar = () => {
   const needsUpgrade = !isAdmin && courseCount >= maxCourses;
   return (
     <div className="fixed h-full md:w-64 p-4 shadow-md">
-      <Image src={"/logo.png"} width={44} height={44} />
+      <Image src={"/logo.svg"} width={44} height={44} />
       <hr className="my-3" />
       <ul>
         {menu.map((item) => (

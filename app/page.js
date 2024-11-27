@@ -1,9 +1,11 @@
+"use client";
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Head from 'next/head';
 import Contect from './_components/Contect';
 import Link from 'next/link';
 import { FaGithub } from "react-icons/fa";
+
 
 const Page = () => {
   return (
@@ -24,8 +26,8 @@ const Page = () => {
               {/* Sponsor Button */}
               <div>
                 <iframe
-                  src="https://github.com/sponsors/modamaan/button"
-                  title="Sponsor modamaan on GitHub"
+                  src="https://github.com/Aman2329"
+                  title="Sponsor StepUp on GitHub"
                   height="32"
                   width="114"
                   className="border-0 rounded-lg"
@@ -35,8 +37,8 @@ const Page = () => {
               <div>
                 <a
                   target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://github.com/modamaan/Ai-mock-Interview"
+                  rel="StepUp"
+                  href="https://github.com/Aman2329"
                 >
                   <FaGithub className="w-10 h-8" />
                 </a>
@@ -100,7 +102,7 @@ const Page = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 bg-gray-50 px-6 md:px-0">
+        {/* <section id="testimonials" className="py-16 bg-gray-50 px-6 md:px-0">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-800">What Our Users Say</h2>
             <div className="flex flex-wrap justify-center mt-8">
@@ -109,7 +111,7 @@ const Page = () => {
                   <p className="text-gray-600">
                     "The AI mock interviews were incredibly helpful. I felt much more confident going into my real interview."
                   </p>
-                  <h4 className="mt-4 text-lg font-semibold text-blue-600">- Alex Johnson</h4>
+                  <h4 className="mt-4 text-lg font-semibold text-blue-600">- Alex</h4>
                 </div>
               </div>
               <div className="w-full md:w-1/2 px-4 py-8">
@@ -117,17 +119,169 @@ const Page = () => {
                   <p className="text-gray-600">
                     "The feedback was spot on and helped me improve my answers. Highly recommend this service!"
                   </p>
-                  <h4 className="mt-4 text-lg font-semibold text-blue-600">- Sarah Williams</h4>
+                  <h4 className="mt-4 text-lg font-semibold text-blue-600">- Aman</h4>
                 </div>
               </div>
             </div>
           </div>
+        </section> */}
+
+
+        {/* Testimonials Section */}
+        <section id="testimonials" className="py-16 bg-gray-50 px-6 md:px-0">
+          <div className="container mx-auto text-center overflow-hidden relative">
+            <h2 className="text-4xl font-bold text-gray-800 mb-8">What Our Users Say</h2>
+            <div className="relative w-full overflow-hidden">
+              <div className="flex animate-scroll gap-8">
+                {/* Testimonial 1 */}
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="aman.jpeg"
+                      alt="Alex"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "The is incredibly helpful. I felt much more confident going into my real interview."
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- Alex</h4>
+                  </div>
+                </div>
+
+                {/* Testimonial 2 */}
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="aman.jpeg"
+                      alt="Aman"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "The feedback was spot on and helped me improve my answers. Highly recommend this service!"
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- Aman</h4>
+                  </div>
+                </div>
+
+                {/* Testimonial 3 */}
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="https://via.placeholder.com/80"
+                      alt="John"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "This platform transformed the way I prepare for interviews. Amazing experience!"
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- John</h4>
+                  </div>
+                </div>
+
+                {/* Testimonial 4 */}
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="https://via.placeholder.com/80"
+                      alt="Sophia"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "Loved the user-friendly interface and insightful feedback. Highly recommended!"
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- Sophia</h4>
+                  </div>
+                </div>
+
+                {/* Testimonial 5 */}
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="https://via.placeholder.com/80"
+                      alt="Emma"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "The best platform to boost your interview skills. A game-changer for job seekers!"
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- Emma</h4>
+                  </div>
+                </div>
+
+                {/* Duplicate first 3 testimonials for seamless scrolling */}
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="person.jpeg"
+                      alt="Alex"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "The is incredibly helpful. I felt much more confident going into my real interview."
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- Alex</h4>
+                  </div>
+                </div>
+
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="aman.jpeg"
+                      alt="Aman"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "The feedback was spot on and helped me improve my answers. Highly recommend this service!"
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- Aman</h4>
+                  </div>
+                </div>
+
+                <div className="w-80 flex-shrink-0">
+                  <div className="bg-white rounded-lg p-6 shadow-lg text-left">
+                    <img
+                      src="https://via.placeholder.com/80"
+                      alt="John"
+                      className="rounded-full w-20 h-20 mx-auto border-2 border-blue-600"
+                    />
+                    <p className="text-gray-600 mt-4 italic">
+                      "This platform transformed the way I prepare for interviews. Amazing experience!"
+                    </p>
+                    <h4 className="mt-4 text-lg font-semibold text-blue-600">- John</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CSS Styling */}
+          <style jsx>{`
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .animate-scroll {
+      display: flex;
+      will-change: transform;
+      animation: scroll 20s linear infinite;
+    }
+  `}</style>
         </section>
+
+
+
 
         {/* Contact Section */}
         <section id="contact" className="py-16 bg-white px-6 md:px-0">
           <Contect />
         </section>
+
+
       </main>
 
       <footer className="py-8 bg-black text-white text-center">
@@ -136,5 +290,6 @@ const Page = () => {
     </div>
   );
 }
+
 
 export default Page;
